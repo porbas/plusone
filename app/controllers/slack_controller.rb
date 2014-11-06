@@ -38,10 +38,6 @@ class SlackController < ApplicationController
     team.slack_team_domain = params[:team_domain]
     team.save!
 
-    sender = team.team_members.find_or_initialize_by(slack_user_name: params[:user_name])
-    sender.slack_user_id = params[:user_id]
-    sender.save!
-
     msg = team.team_members.sort_by{|tm| tm.points }.reverse.map{|tm| "#{tm.slack_user_name}: #{tm.points}"}.join(", ")
 
     respond_to do |format|
@@ -52,14 +48,6 @@ class SlackController < ApplicationController
   end
 
   def empty
-    team = Team.find_or_initialize_by(slack_team_id: params[:team_id])
-    team.slack_team_domain = params[:team_domain]
-    team.save!
-
-    sender = team.team_members.find_or_initialize_by(slack_user_name: params[:user_name])
-    sender.slack_user_id = params[:user_id]
-    sender.save!
-
     respond_to do |format|
       format.json do
         render json: {text: "?"}

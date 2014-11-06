@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   end
 
   post "/slack" => "slack#create"
+  post "/slack" => "slack#create"
+  post "/slack" => "slack#create"
 
   root "slack#index"
 

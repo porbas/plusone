@@ -53,6 +53,8 @@ class SlackController < ApplicationController
     end
   end
 
+
+
   private
 
   def recipient_name

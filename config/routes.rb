@@ -18,8 +18,8 @@ Rails.application.routes.draw do
     end
   end
 
-  post "/slack" => "slack#create"
-  post "/slack" => "slack#create"
+  post "/slack" => "slack#create", constraints: StatsConstraint.new
+  post "/slack" => "slack#create", constraints: EmptyConstraint.new
   post "/slack" => "slack#create"
 
   root "slack#index"
